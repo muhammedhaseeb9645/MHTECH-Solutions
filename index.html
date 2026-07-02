@@ -11,15 +11,17 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Forces standard application frame styling on desktop, full-screen on mobile devices */
-        @media (max-width: 640px) {
-            .app-container {
-                max-width: 100% !important;
-                height: 100vh !important;
-                height: 100dvh !important;
-                border-radius: 0px !important;
-                border-width: 0px !important;
-            }
+        /* FIXED DESKTOP VIEW SYSTEM: 
+           Removes the constrained 'max-w-md' and hardcoded heights on desktop devices.
+           Enables the app framework to scale fluidly on monitors while adapting layout sizes natively.
+        */
+        .app-container {
+            width: 100%;
+            max-width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            border-radius: 0px !important;
+            border-width: 0px !important;
         }
 
         /* Highlights matching text inputs dynamically with high-visibility red */
@@ -29,22 +31,22 @@
         }
     </style>
 </head>
-<body class="bg-gray-900 flex justify-center items-center min-h-screen font-sans antialiased">
+<body class="bg-gray-900 min-h-screen font-sans antialiased overflow-hidden">
 
-    <div class="app-container relative w-full max-w-md h-[90vh] bg-gray-100 rounded-[40px] shadow-2xl overflow-hidden border-8 border-gray-800 flex flex-col transition-all">
+    <div class="app-container relative bg-gray-100 shadow-2xl flex flex-col transition-all">
         
-        <header id="app-header" class="bg-white px-4 pt-4 pb-2 flex items-center justify-between border-b border-gray-100 shrink-0">
+        <header id="app-header" class="bg-white px-6 pt-4 pb-3 flex items-center justify-between border-b border-gray-100 shrink-0">
             <div class="flex items-center gap-2">
-                <div class="w-7 h-7 bg-purple-600 rounded flex items-center justify-center text-white font-bold text-xs">SH</div>
-                <span id="header-title" class="text-lg font-bold text-gray-800">Latest</span>
+                <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">SH</div>
+                <span id="header-title" class="text-xl font-bold text-gray-800">Latest</span>
             </div>
-            <div class="flex items-center gap-4 text-gray-700">
-                <button onclick="focusInlineSearch()" class="focus:outline-none"><span class="material-icons-outlined text-2xl">search</span></button>
-                <button class="relative focus:outline-none">
+            <div class="flex items-center gap-6 text-gray-700">
+                <button onclick="focusInlineSearch()" class="focus:outline-none cursor-pointer"><span class="material-icons-outlined text-2xl">search</span></button>
+                <button class="relative focus:outline-none cursor-pointer">
                     <span class="material-icons-outlined text-2xl">notifications</span>
                     <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
                 </button>
-                <button onclick="toggleSideMenu()" class="focus:outline-none"><span class="material-icons-outlined text-2xl">more_vert</span></button>
+                <button onclick="toggleSideMenu()" class="focus:outline-none cursor-pointer"><span class="material-icons-outlined text-2xl">more_vert</span></button>
             </div>
         </header>
 
@@ -52,15 +54,15 @@
             
             <section id="screen-home" class="view-screen bg-white flex-1 flex flex-col">
                 
-                <div class="p-3 bg-gray-50 border-b border-gray-100 sticky top-0 z-10 shrink-0">
-                    <div class="relative flex items-center">
+                <div class="p-4 bg-gray-50 border-b border-gray-100 sticky top-0 z-10 shrink-0">
+                    <div class="relative flex items-center max-w-3xl mx-auto w-full">
                         <span class="material-icons-outlined absolute left-3 text-gray-400 text-xl pointer-events-none">search</span>
                         <input 
                             id="feed-search-input" 
                             type="text" 
                             placeholder="Type to search 10 video items..." 
                             oninput="executeAdvancedSearch()"
-                            class="w-full bg-white border border-gray-200 rounded-xl pl-10 pr-9 py-2 text-xs font-semibold text-gray-800 placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
+                            class="w-full bg-white border border-gray-200 rounded-xl pl-10 pr-9 py-2.5 text-sm font-semibold text-gray-800 placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
                         >
                         <button 
                             id="clear-search-btn" 
@@ -72,176 +74,176 @@
                     </div>
                 </div>
 
-                <div id="latest-feed-list" class="divide-y divide-gray-100 flex-1">
+                <div id="latest-feed-list" class="divide-y divide-gray-100 flex-1 max-w-5xl mx-auto w-full px-4">
                     
-                    <div class="video-item p-4 flex gap-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="CREATIONSPACE ELECTRIC SCREWDRIVER MALAYALAM REVIEW" data-tag="Best SMD Tools" onclick="openPremiumPlayer('CREATIONSPACE ELECTRIC SCREWDRIVER MALAYALAM REVIEW', 'https://www.w3schools.com/html/mov_bbb.mp4', 'Best SMD Tools')">
-                        <div class="w-28 h-20 bg-gradient-to-br from-purple-900 to-indigo-900 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-1.5 shadow-xs">
-                            <span class="self-end bg-black/40 backdrop-blur-xs text-[8px] px-1 py-0.2 rounded text-white font-medium">Malayalam</span>
-                            <div class="bg-blue-600 self-start p-0.5 rounded-full text-white flex items-center justify-center shadow-md">
-                                <span class="material-icons-outlined text-xs">play_arrow</span>
+                    <div class="video-item p-4 flex gap-4 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="CREATIONSPACE ELECTRIC SCREWDRIVER MALAYALAM REVIEW" data-tag="Best SMD Tools" onclick="openPremiumPlayer('CREATIONSPACE ELECTRIC SCREWDRIVER MALAYALAM REVIEW', 'https://www.w3schools.com/html/mov_bbb.mp4', 'Best SMD Tools')">
+                        <div class="w-36 h-24 bg-gradient-to-br from-purple-900 to-indigo-900 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-2 shadow-xs">
+                            <span class="self-end bg-black/40 backdrop-blur-xs text-[10px] px-1.5 py-0.5 rounded text-white font-medium">Malayalam</span>
+                            <div class="bg-blue-600 self-start p-1 rounded-full text-white flex items-center justify-center shadow-md">
+                                <span class="material-icons-outlined text-sm">play_arrow</span>
                             </div>
                         </div>
-                        <div class="flex flex-col justify-between flex-1 min-w-0">
+                        <div class="flex flex-col justify-between flex-1 min-w-0 py-1">
                             <div>
-                                <span class="text-[9px] text-purple-600 font-bold uppercase tracking-wider">CreationSpace Tools</span>
-                                <h4 class="video-title text-xs font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">CREATIONSPACE ELECTRIC SCREWDRIVER MALAYALAM REVIEW</h4>
+                                <span class="text-[10px] text-purple-600 font-bold uppercase tracking-wider">CreationSpace Tools</span>
+                                <h4 class="video-title text-sm font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">CREATIONSPACE ELECTRIC SCREWDRIVER MALAYALAM REVIEW</h4>
                             </div>
-                            <div class="flex items-center justify-between text-[10px] text-gray-400 font-medium mt-1">
-                                <div class="flex items-center gap-2"><span class="flex items-center gap-0.5"><span class="material-icons-outlined text-xs">thumb_up</span> 14</span></div>
-                                <span onclick="routeToCategory(event, 'Best SMD Tools')" class="bg-purple-100 text-purple-700 hover:bg-purple-200 px-1.5 py-0.5 rounded text-[9px] font-bold transition-colors">Best SMD Tools</span>
+                            <div class="flex items-center justify-between text-xs text-gray-400 font-medium mt-1">
+                                <div class="flex items-center gap-2"><span class="flex items-center gap-1"><span class="material-icons-outlined text-sm">thumb_up</span> 14</span></div>
+                                <span onclick="routeToCategory(event, 'Best SMD Tools')" class="bg-purple-100 text-purple-700 hover:bg-purple-200 px-2 py-0.5 rounded text-[10px] font-bold transition-colors">Best SMD Tools</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="video-item p-4 flex gap-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="SAMSUNG SCREEN FLICKERING ALTERNATING LINES DIAGNOSTIC SOLUTION" data-tag="Android" onclick="openPremiumPlayer('SAMSUNG SCREEN FLICKERING ALTERNATING LINES DIAGNOSTIC SOLUTION', 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4', 'Android')">
-                        <div class="w-28 h-20 bg-gradient-to-br from-amber-800 to-yellow-900 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-1.5 shadow-xs">
-                            <span class="self-end bg-black/40 backdrop-blur-xs text-[8px] px-1 py-0.2 rounded text-white font-medium">Malayalam</span>
-                            <span class="bg-red-600 text-white self-start text-[8px] font-black px-1 rounded uppercase tracking-wide">Solved</span>
+                    <div class="video-item p-4 flex gap-4 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="SAMSUNG SCREEN FLICKERING ALTERNATING LINES DIAGNOSTIC SOLUTION" data-tag="Android" onclick="openPremiumPlayer('SAMSUNG SCREEN FLICKERING ALTERNATING LINES DIAGNOSTIC SOLUTION', 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4', 'Android')">
+                        <div class="w-36 h-24 bg-gradient-to-br from-amber-800 to-yellow-900 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-2 shadow-xs">
+                            <span class="self-end bg-black/40 backdrop-blur-xs text-[10px] px-1.5 py-0.5 rounded text-white font-medium">Malayalam</span>
+                            <span class="bg-red-600 text-white self-start text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wide">Solved</span>
                         </div>
-                        <div class="flex flex-col justify-between flex-1 min-w-0">
+                        <div class="flex flex-col justify-between flex-1 min-w-0 py-1">
                             <div>
-                                <span class="text-[9px] text-amber-600 font-bold uppercase tracking-wider">Samsung Core</span>
-                                <h4 class="video-title text-xs font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">SAMSUNG SCREEN FLICKERING ALTERNATING LINES DIAGNOSTIC SOLUTION</h4>
+                                <span class="text-[10px] text-amber-600 font-bold uppercase tracking-wider">Samsung Core</span>
+                                <h4 class="video-title text-sm font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">SAMSUNG SCREEN FLICKERING ALTERNATING LINES DIAGNOSTIC SOLUTION</h4>
                             </div>
-                            <div class="flex items-center justify-between text-[10px] text-gray-400 font-medium mt-1">
-                                <div class="flex items-center gap-2"><span class="flex items-center gap-0.5"><span class="material-icons-outlined text-xs">thumb_up</span> 53</span></div>
-                                <span onclick="routeToCategory(event, 'Android Solutions')" class="bg-green-100 text-green-700 hover:bg-green-200 px-1.5 py-0.5 rounded text-[9px] font-bold transition-colors">Android</span>
+                            <div class="flex items-center justify-between text-xs text-gray-400 font-medium mt-1">
+                                <div class="flex items-center gap-2"><span class="flex items-center gap-1"><span class="material-icons-outlined text-sm">thumb_up</span> 53</span></div>
+                                <span onclick="routeToCategory(event, 'Android Solutions')" class="bg-green-100 text-green-700 hover:bg-green-200 px-2 py-0.5 rounded text-[10px] font-bold transition-colors">Android</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="video-item p-4 flex gap-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="SAMSUNG S8 PLUS HALF SHORT (DEAD) REPAIR SOLUTION" data-tag="Hardware" onclick="openPremiumPlayer('SAMSUNG S8 PLUS HALF SHORT (DEAD) REPAIR SOLUTION', 'https://www.w3schools.com/html/movie.mp4', 'Hardware')">
-                        <div class="w-28 h-20 bg-gradient-to-br from-blue-900 to-slate-900 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-1.5 shadow-xs">
-                            <span class="self-end bg-black/40 backdrop-blur-xs text-[8px] px-1 py-0.2 rounded text-white font-medium">Malayalam</span>
-                            <span class="text-[8px] font-mono font-bold text-cyan-300">REPAIR KIT</span>
+                    <div class="video-item p-4 flex gap-4 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="SAMSUNG S8 PLUS HALF SHORT (DEAD) REPAIR SOLUTION" data-tag="Hardware" onclick="openPremiumPlayer('SAMSUNG S8 PLUS HALF SHORT (DEAD) REPAIR SOLUTION', 'https://www.w3schools.com/html/movie.mp4', 'Hardware')">
+                        <div class="w-36 h-24 bg-gradient-to-br from-blue-900 to-slate-900 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-2 shadow-xs">
+                            <span class="self-end bg-black/40 backdrop-blur-xs text-[10px] px-1.5 py-0.5 rounded text-white font-medium">Malayalam</span>
+                            <span class="text-[9px] font-mono font-bold text-cyan-300">REPAIR KIT</span>
                         </div>
-                        <div class="flex flex-col justify-between flex-1 min-w-0">
+                        <div class="flex flex-col justify-between flex-1 min-w-0 py-1">
                             <div>
-                                <span class="text-[9px] text-blue-600 font-bold uppercase tracking-wider">Hardware Repair</span>
-                                <h4 class="video-title text-xs font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">SAMSUNG S8 PLUS HALF SHORT (DEAD) REPAIR SOLUTION</h4>
+                                <span class="text-[10px] text-blue-600 font-bold uppercase tracking-wider">Hardware Repair</span>
+                                <h4 class="video-title text-sm font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">SAMSUNG S8 PLUS HALF SHORT (DEAD) REPAIR SOLUTION</h4>
                             </div>
-                            <div class="flex items-center justify-between text-[10px] text-gray-400 font-medium mt-1">
-                                <div class="flex items-center gap-2"><span class="flex items-center gap-0.5"><span class="material-icons-outlined text-xs">thumb_up</span> 92</span></div>
-                                <span onclick="routeToCategory(event, 'Hardware Solutions')" class="bg-blue-100 text-blue-700 hover:bg-blue-200 px-1.5 py-0.5 rounded text-[9px] font-bold transition-colors">Hardware</span>
+                            <div class="flex items-center justify-between text-xs text-gray-400 font-medium mt-1">
+                                <div class="flex items-center gap-2"><span class="flex items-center gap-1"><span class="material-icons-outlined text-sm">thumb_up</span> 92</span></div>
+                                <span onclick="routeToCategory(event, 'Hardware Solutions')" class="bg-blue-100 text-blue-700 hover:bg-blue-200 px-2 py-0.5 rounded text-[10px] font-bold transition-colors">Hardware</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="video-item p-4 flex gap-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="PANIC LOG PARSING TOOL SETUP OVERVIEW & ERROR CORE MAPPING" data-tag="Diagnostics" onclick="openPremiumPlayer('PANIC LOG PARSING TOOL SETUP OVERVIEW & ERROR CORE MAPPING', 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4', 'Diagnostics')">
-                        <div class="w-28 h-20 bg-gradient-to-br from-red-950 to-rose-900 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-1.5 shadow-xs">
-                            <span class="self-end bg-black/40 backdrop-blur-xs text-[8px] px-1 py-0.2 rounded text-white font-medium">Global</span>
-                            <span class="material-icons-outlined text-red-400 text-sm">analytics</span>
+                    <div class="video-item p-4 flex gap-4 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="PANIC LOG PARSING TOOL SETUP OVERVIEW & ERROR CORE MAPPING" data-tag="Diagnostics" onclick="openPremiumPlayer('PANIC LOG PARSING TOOL SETUP OVERVIEW & ERROR CORE MAPPING', 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4', 'Diagnostics')">
+                        <div class="w-36 h-24 bg-gradient-to-br from-red-950 to-rose-900 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-2 shadow-xs">
+                            <span class="self-end bg-black/40 backdrop-blur-xs text-[10px] px-1.5 py-0.5 rounded text-white font-medium">Global</span>
+                            <span class="material-icons-outlined text-red-400 text-xl">analytics</span>
                         </div>
-                        <div class="flex flex-col justify-between flex-1 min-w-0">
+                        <div class="flex flex-col justify-between flex-1 min-w-0 py-1">
                             <div>
-                                <span class="text-[9px] text-red-600 font-bold uppercase tracking-wider">Kernel Diagnostics</span>
-                                <h4 class="video-title text-xs font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">PANIC LOG PARSING TOOL SETUP OVERVIEW & ERROR CORE MAPPING</h4>
+                                <span class="text-[10px] text-red-600 font-bold uppercase tracking-wider">Kernel Diagnostics</span>
+                                <h4 class="video-title text-sm font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">PANIC LOG PARSING TOOL SETUP OVERVIEW & ERROR CORE MAPPING</h4>
                             </div>
-                            <div class="flex items-center justify-between text-[10px] text-gray-400 font-medium mt-1">
-                                <div class="flex items-center gap-2"><span class="flex items-center gap-0.5"><span class="material-icons-outlined text-xs">thumb_up</span> 104</span></div>
-                                <span onclick="routeToCategory(event, 'Kernel Diagnostics')" class="bg-red-100 text-red-700 hover:bg-red-200 px-1.5 py-0.5 rounded text-[9px] font-bold transition-colors">Diagnostics</span>
+                            <div class="flex items-center justify-between text-xs text-gray-400 font-medium mt-1">
+                                <div class="flex items-center gap-2"><span class="flex items-center gap-1"><span class="material-icons-outlined text-sm">thumb_up</span> 104</span></div>
+                                <span onclick="routeToCategory(event, 'Kernel Diagnostics')" class="bg-red-100 text-red-700 hover:bg-red-200 px-2 py-0.5 rounded text-[10px] font-bold transition-colors">Diagnostics</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="video-item p-4 flex gap-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="IPHONE 13 PRO MAX WHITE SCREEN FIXED BYPASS METHOD" data-tag="Apple iOS" onclick="openPremiumPlayer('IPHONE 13 PRO MAX WHITE SCREEN FIXED BYPASS METHOD', 'https://www.w3schools.com/html/mov_bbb.mp4', 'Apple iOS')">
-                        <div class="w-28 h-20 bg-gradient-to-br from-gray-800 to-slate-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-1.5 shadow-xs">
-                            <span class="self-end bg-black/40 backdrop-blur-xs text-[8px] px-1 py-0.2 rounded text-white font-medium">Global</span>
-                            <span class="text-[8px] font-mono font-bold text-green-400">iOS 17 Ready</span>
+                    <div class="video-item p-4 flex gap-4 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="IPHONE 13 PRO MAX WHITE SCREEN FIXED BYPASS METHOD" data-tag="Apple iOS" onclick="openPremiumPlayer('IPHONE 13 PRO MAX WHITE SCREEN FIXED BYPASS METHOD', 'https://www.w3schools.com/html/mov_bbb.mp4', 'Apple iOS')">
+                        <div class="w-36 h-24 bg-gradient-to-br from-gray-800 to-slate-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-2 shadow-xs">
+                            <span class="self-end bg-black/40 backdrop-blur-xs text-[10px] px-1.5 py-0.5 rounded text-white font-medium">Global</span>
+                            <span class="text-[9px] font-mono font-bold text-green-400">iOS 17 Ready</span>
                         </div>
-                        <div class="flex flex-col justify-between flex-1 min-w-0">
+                        <div class="flex flex-col justify-between flex-1 min-w-0 py-1">
                             <div>
-                                <span class="text-[9px] text-gray-600 font-bold uppercase tracking-wider">Apple Diagnostics</span>
-                                <h4 class="video-title text-xs font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">IPHONE 13 PRO MAX WHITE SCREEN FIXED BYPASS METHOD</h4>
+                                <span class="text-[10px] text-gray-600 font-bold uppercase tracking-wider">Apple Diagnostics</span>
+                                <h4 class="video-title text-sm font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">IPHONE 13 PRO MAX WHITE SCREEN FIXED BYPASS METHOD</h4>
                             </div>
-                            <div class="flex items-center justify-between text-[10px] text-gray-400 font-medium mt-1">
-                                <div class="flex items-center gap-2"><span class="flex items-center gap-0.5"><span class="material-icons-outlined text-xs">thumb_up</span> 210</span></div>
-                                <span onclick="routeToCategory(event, 'Apple iOS Solutions')" class="bg-gray-100 text-gray-700 hover:bg-gray-200 px-1.5 py-0.5 rounded text-[9px] font-bold transition-colors">Apple iOS</span>
+                            <div class="flex items-center justify-between text-xs text-gray-400 font-medium mt-1">
+                                <div class="flex items-center gap-2"><span class="flex items-center gap-1"><span class="material-icons-outlined text-sm">thumb_up</span> 210</span></div>
+                                <span onclick="routeToCategory(event, 'Apple iOS Solutions')" class="bg-gray-100 text-gray-700 hover:bg-gray-200 px-2 py-0.5 rounded text-[10px] font-bold transition-colors">Apple iOS</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="video-item p-4 flex gap-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="POCO X3 PRO CPU REBALLING COMPLETE STEP BY STEP" data-tag="Android" onclick="openPremiumPlayer('POCO X3 PRO CPU REBALLING COMPLETE STEP BY STEP', 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4', 'Android')">
-                        <div class="w-28 h-20 bg-gradient-to-br from-orange-900 to-amber-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-1.5 shadow-xs">
-                            <span class="self-end bg-black/40 backdrop-blur-xs text-[8px] px-1 py-0.2 rounded text-white font-medium">Malayalam</span>
-                            <span class="text-[8px] font-mono font-bold text-orange-400">CHIPSET</span>
+                    <div class="video-item p-4 flex gap-4 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="POCO X3 PRO CPU REBALLING COMPLETE STEP BY STEP" data-tag="Android" onclick="openPremiumPlayer('POCO X3 PRO CPU REBALLING COMPLETE STEP BY STEP', 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4', 'Android')">
+                        <div class="w-36 h-24 bg-gradient-to-br from-orange-900 to-amber-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-2 shadow-xs">
+                            <span class="self-end bg-black/40 backdrop-blur-xs text-[10px] px-1.5 py-0.5 rounded text-white font-medium">Malayalam</span>
+                            <span class="text-[9px] font-mono font-bold text-orange-400">CHIPSET</span>
                         </div>
-                        <div class="flex flex-col justify-between flex-1 min-w-0">
+                        <div class="flex flex-col justify-between flex-1 min-w-0 py-1">
                             <div>
-                                <span class="text-[9px] text-orange-600 font-bold uppercase tracking-wider">CPU Micro-soldering</span>
-                                <h4 class="video-title text-xs font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">POCO X3 PRO CPU REBALLING COMPLETE STEP BY STEP</h4>
+                                <span class="text-[10px] text-orange-600 font-bold uppercase tracking-wider">CPU Micro-soldering</span>
+                                <h4 class="video-title text-sm font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">POCO X3 PRO CPU REBALLING COMPLETE STEP BY STEP</h4>
                             </div>
-                            <div class="flex items-center justify-between text-[10px] text-gray-400 font-medium mt-1">
-                                <div class="flex items-center gap-2"><span class="flex items-center gap-0.5"><span class="material-icons-outlined text-xs">thumb_up</span> 340</span></div>
-                                <span onclick="routeToCategory(event, 'Android Solutions')" class="bg-green-100 text-green-700 hover:bg-green-200 px-1.5 py-0.5 rounded text-[9px] font-bold transition-colors">Android</span>
+                            <div class="flex items-center justify-between text-xs text-gray-400 font-medium mt-1">
+                                <div class="flex items-center gap-2"><span class="flex items-center gap-1"><span class="material-icons-outlined text-sm">thumb_up</span> 340</span></div>
+                                <span onclick="routeToCategory(event, 'Android Solutions')" class="bg-green-100 text-green-700 hover:bg-green-200 px-2 py-0.5 rounded text-[10px] font-bold transition-colors">Android</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="video-item p-4 flex gap-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="ONEPLUS 9R BLACK SCREEN DEAD REPAIR TRACE METHOD" data-tag="Android" onclick="openPremiumPlayer('ONEPLUS 9R BLACK SCREEN DEAD REPAIR TRACE METHOD', 'https://www.w3schools.com/html/movie.mp4', 'Android')">
-                        <div class="w-28 h-20 bg-gradient-to-br from-cyan-900 to-teal-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-1.5 shadow-xs">
-                            <span class="self-end bg-black/40 backdrop-blur-xs text-[8px] px-1 py-0.2 rounded text-white font-medium">Malayalam</span>
-                            <div class="bg-cyan-600 self-start p-0.5 rounded-full text-white flex items-center justify-center"><span class="material-icons-outlined text-xs">offline_bolt</span></div>
+                    <div class="video-item p-4 flex gap-4 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="ONEPLUS 9R BLACK SCREEN DEAD REPAIR TRACE METHOD" data-tag="Android" onclick="openPremiumPlayer('ONEPLUS 9R BLACK SCREEN DEAD REPAIR TRACE METHOD', 'https://www.w3schools.com/html/movie.mp4', 'Android')">
+                        <div class="w-36 h-24 bg-gradient-to-br from-cyan-900 to-teal-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-2 shadow-xs">
+                            <span class="self-end bg-black/40 backdrop-blur-xs text-[10px] px-1.5 py-0.5 rounded text-white font-medium">Malayalam</span>
+                            <div class="bg-cyan-600 self-start p-1 rounded-full text-white flex items-center justify-center"><span class="material-icons-outlined text-sm">offline_bolt</span></div>
                         </div>
-                        <div class="flex flex-col justify-between flex-1 min-w-0">
+                        <div class="flex flex-col justify-between flex-1 min-w-0 py-1">
                             <div>
-                                <span class="text-[9px] text-teal-600 font-bold uppercase tracking-wider">Power Sequence</span>
-                                <h4 class="video-title text-xs font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">ONEPLUS 9R BLACK SCREEN DEAD REPAIR TRACE METHOD</h4>
+                                <span class="text-[10px] text-teal-600 font-bold uppercase tracking-wider">Power Sequence</span>
+                                <h4 class="video-title text-sm font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">ONEPLUS 9R BLACK SCREEN DEAD REPAIR TRACE METHOD</h4>
                             </div>
-                            <div class="flex items-center justify-between text-[10px] text-gray-400 font-medium mt-1">
-                                <div class="flex items-center gap-2"><span class="flex items-center gap-0.5"><span class="material-icons-outlined text-xs">thumb_up</span> 88</span></div>
-                                <span onclick="routeToCategory(event, 'Android Solutions')" class="bg-green-100 text-green-700 hover:bg-green-200 px-1.5 py-0.5 rounded text-[9px] font-bold transition-colors">Android</span>
+                            <div class="flex items-center justify-between text-xs text-gray-400 font-medium mt-1">
+                                <div class="flex items-center gap-2"><span class="flex items-center gap-1"><span class="material-icons-outlined text-sm">thumb_up</span> 88</span></div>
+                                <span onclick="routeToCategory(event, 'Android Solutions')" class="bg-green-100 text-green-700 hover:bg-green-200 px-2 py-0.5 rounded text-[10px] font-bold transition-colors">Android</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="video-item p-4 flex gap-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="IPHONE 14 PRO PANIC FULL RESTART LOG REPAIR TRACE" data-tag="Diagnostics" onclick="openPremiumPlayer('IPHONE 14 PRO PANIC FULL RESTART LOG REPAIR TRACE', 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4', 'Diagnostics')">
-                        <div class="w-28 h-20 bg-gradient-to-br from-rose-900 to-pink-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-1.5 shadow-xs">
-                            <span class="self-end bg-black/40 backdrop-blur-xs text-[8px] px-1 py-0.2 rounded text-white font-medium">Global</span>
-                            <span class="text-[8px] font-mono font-bold text-rose-300">I2C Error</span>
+                    <div class="video-item p-4 flex gap-4 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="IPHONE 14 PRO PANIC FULL RESTART LOG REPAIR TRACE" data-tag="Diagnostics" onclick="openPremiumPlayer('IPHONE 14 PRO PANIC FULL RESTART LOG REPAIR TRACE', 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4', 'Diagnostics')">
+                        <div class="w-36 h-24 bg-gradient-to-br from-rose-900 to-pink-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-2 shadow-xs">
+                            <span class="self-end bg-black/40 backdrop-blur-xs text-[10px] px-1.5 py-0.5 rounded text-white font-medium">Global</span>
+                            <span class="text-[9px] font-mono font-bold text-rose-300">I2C Error</span>
                         </div>
-                        <div class="flex flex-col justify-between flex-1 min-w-0">
+                        <div class="flex flex-col justify-between flex-1 min-w-0 py-1">
                             <div>
-                                <span class="text-[9px] text-rose-600 font-bold uppercase tracking-wider">Panic Analyzer</span>
-                                <h4 class="video-title text-xs font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">IPHONE 14 PRO PANIC FULL RESTART LOG REPAIR TRACE</h4>
+                                <span class="text-[10px] text-rose-600 font-bold uppercase tracking-wider">Panic Analyzer</span>
+                                <h4 class="video-title text-sm font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">IPHONE 14 PRO PANIC FULL RESTART LOG REPAIR TRACE</h4>
                             </div>
-                            <div class="flex items-center justify-between text-[10px] text-gray-400 font-medium mt-1">
-                                <div class="flex items-center gap-2"><span class="flex items-center gap-0.5"><span class="material-icons-outlined text-xs">thumb_up</span> 165</span></div>
-                                <span onclick="routeToCategory(event, 'Kernel Diagnostics')" class="bg-red-100 text-red-700 hover:bg-red-200 px-1.5 py-0.5 rounded text-[9px] font-bold transition-colors">Diagnostics</span>
+                            <div class="flex items-center justify-between text-xs text-gray-400 font-medium mt-1">
+                                <div class="flex items-center gap-2"><span class="flex items-center gap-1"><span class="material-icons-outlined text-sm">thumb_up</span> 165</span></div>
+                                <span onclick="routeToCategory(event, 'Kernel Diagnostics')" class="bg-red-100 text-red-700 hover:bg-red-200 px-2 py-0.5 rounded text-[10px] font-bold transition-colors">Diagnostics</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="video-item p-4 flex gap-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="REALME X7 MAX MICROSOLDERING SHORT CIRCUIT TRACKING" data-tag="Hardware" onclick="openPremiumPlayer('REALME X7 MAX MICROSOLDERING SHORT CIRCUIT TRACKING', 'https://www.w3schools.com/html/movie.mp4', 'Hardware')">
-                        <div class="w-28 h-20 bg-gradient-to-br from-emerald-900 to-green-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-1.5 shadow-xs">
-                            <span class="self-end bg-black/40 backdrop-blur-xs text-[8px] px-1 py-0.2 rounded text-white font-medium">Malayalam</span>
-                            <span class="text-[8px] font-mono font-bold text-emerald-400">VCC_MAIN</span>
+                    <div class="video-item p-4 flex gap-4 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="REALME X7 MAX MICROSOLDERING SHORT CIRCUIT TRACKING" data-tag="Hardware" onclick="openPremiumPlayer('REALME X7 MAX MICROSOLDERING SHORT CIRCUIT TRACKING', 'https://www.w3schools.com/html/movie.mp4', 'Hardware')">
+                        <div class="w-36 h-24 bg-gradient-to-br from-emerald-900 to-green-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-2 shadow-xs">
+                            <span class="self-end bg-black/40 backdrop-blur-xs text-[10px] px-1.5 py-0.5 rounded text-white font-medium">Malayalam</span>
+                            <span class="text-[9px] font-mono font-bold text-emerald-400">VCC_MAIN</span>
                         </div>
-                        <div class="flex flex-col justify-between flex-1 min-w-0">
+                        <div class="flex flex-col justify-between flex-1 min-w-0 py-1">
                             <div>
-                                <span class="text-[9px] text-emerald-600 font-bold uppercase tracking-wider">Thermal Injection</span>
-                                <h4 class="video-title text-xs font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">REALME X7 MAX MICROSOLDERING SHORT CIRCUIT TRACKING</h4>
+                                <span class="text-[10px] text-emerald-600 font-bold uppercase tracking-wider">Thermal Injection</span>
+                                <h4 class="video-title text-sm font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">REALME X7 MAX MICROSOLDERING SHORT CIRCUIT TRACKING</h4>
                             </div>
-                            <div class="flex items-center justify-between text-[10px] text-gray-400 font-medium mt-1">
-                                <div class="flex items-center gap-2"><span class="flex items-center gap-0.5"><span class="material-icons-outlined text-xs">thumb_up</span> 72</span></div>
-                                <span onclick="routeToCategory(event, 'Hardware Solutions')" class="bg-blue-100 text-blue-700 hover:bg-blue-200 px-1.5 py-0.5 rounded text-[9px] font-bold transition-colors">Hardware</span>
+                            <div class="flex items-center justify-between text-xs text-gray-400 font-medium mt-1">
+                                <div class="flex items-center gap-2"><span class="flex items-center gap-1"><span class="material-icons-outlined text-sm">thumb_up</span> 72</span></div>
+                                <span onclick="routeToCategory(event, 'Hardware Solutions')" class="bg-blue-100 text-blue-700 hover:bg-blue-200 px-2 py-0.5 rounded text-[10px] font-bold transition-colors">Hardware</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="video-item p-4 flex gap-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="XIAOMI MI 11 ULTRA CAMERA ERROR HARDWARE FIXED" data-tag="Android" onclick="openPremiumPlayer('XIAOMI MI 11 ULTRA CAMERA ERROR HARDWARE FIXED', 'https://www.w3schools.com/html/mov_bbb.mp4', 'Android')">
-                        <div class="w-28 h-20 bg-gradient-to-br from-yellow-800 to-orange-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-1.5 shadow-xs">
-                            <span class="self-end bg-black/40 backdrop-blur-xs text-[8px] px-1 py-0.2 rounded text-white font-medium">Malayalam</span>
-                            <div class="bg-amber-500 self-start p-0.5 rounded-full text-white flex items-center justify-center shadow-xs"><span class="material-icons-outlined text-xs">photo_camera</span></div>
+                    <div class="video-item p-4 flex gap-4 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors" data-title="XIAOMI MI 11 ULTRA CAMERA ERROR HARDWARE FIXED" data-tag="Android" onclick="openPremiumPlayer('XIAOMI MI 11 ULTRA CAMERA ERROR HARDWARE FIXED', 'https://www.w3schools.com/html/mov_bbb.mp4', 'Android')">
+                        <div class="w-36 h-24 bg-gradient-to-br from-yellow-800 to-orange-950 rounded-xl shrink-0 relative overflow-hidden flex flex-col justify-between p-2 shadow-xs">
+                            <span class="self-end bg-black/40 backdrop-blur-xs text-[10px] px-1.5 py-0.5 rounded text-white font-medium">Malayalam</span>
+                            <div class="bg-amber-500 self-start p-1 rounded-full text-white flex items-center justify-center shadow-xs"><span class="material-icons-outlined text-sm">photo_camera</span></div>
                         </div>
-                        <div class="flex flex-col justify-between flex-1 min-w-0">
+                        <div class="flex flex-col justify-between flex-1 min-w-0 py-1">
                             <div>
-                                <span class="text-[9px] text-amber-600 font-bold uppercase tracking-wider">LDO Voltage Fix</span>
-                                <h4 class="video-title text-xs font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">XIAOMI MI 11 ULTRA CAMERA ERROR HARDWARE FIXED</h4>
+                                <span class="text-[10px] text-amber-600 font-bold uppercase tracking-wider">LDO Voltage Fix</span>
+                                <h4 class="video-title text-sm font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">XIAOMI MI 11 ULTRA CAMERA ERROR HARDWARE FIXED</h4>
                             </div>
-                            <div class="flex items-center justify-between text-[10px] text-gray-400 font-medium mt-1">
-                                <div class="flex items-center gap-2"><span class="flex items-center gap-0.5"><span class="material-icons-outlined text-xs">thumb_up</span> 144</span></div>
-                                <span onclick="routeToCategory(event, 'Android Solutions')" class="bg-green-100 text-green-700 hover:bg-green-200 px-1.5 py-0.5 rounded text-[9px] font-bold transition-colors">Android</span>
+                            <div class="flex items-center justify-between text-xs text-gray-400 font-medium mt-1">
+                                <div class="flex items-center gap-2"><span class="flex items-center gap-1"><span class="material-icons-outlined text-sm">thumb_up</span> 144</span></div>
+                                <span onclick="routeToCategory(event, 'Android Solutions')" class="bg-green-100 text-green-700 hover:bg-green-200 px-2 py-0.5 rounded text-[10px] font-bold transition-colors">Android</span>
                             </div>
                         </div>
                     </div>
@@ -249,108 +251,108 @@
                 </div>
             </section>
 
-            <section id="screen-categories" class="view-screen hidden p-4 grid grid-cols-2 gap-3">
-                <div onclick="triggerSearchHub('Android Solutions')" class="bg-white p-4 rounded-2xl flex flex-col items-center justify-center border border-gray-100 shadow-sm cursor-pointer active:scale-95 transition-transform">
-                    <div class="w-16 h-16 flex items-center justify-center text-green-500 mb-2"><span class="material-icons-outlined text-5xl">android</span></div>
-                    <span class="font-bold text-sm text-gray-800">Android</span>
+            <section id="screen-categories" class="view-screen hidden p-6 max-w-4xl mx-auto w-full grid grid-cols-2 gap-4">
+                <div onclick="triggerSearchHub('Android Solutions')" class="bg-white p-6 rounded-2xl flex flex-col items-center justify-center border border-gray-100 shadow-xs cursor-pointer active:scale-95 transition-transform hover:border-purple-200">
+                    <div class="w-20 h-20 flex items-center justify-center text-green-500 mb-2"><span class="material-icons-outlined text-6xl">android</span></div>
+                    <span class="font-bold text-base text-gray-800">Android</span>
                 </div>
-                <div onclick="triggerSearchHub('Apple iOS Solutions')" class="bg-white p-4 rounded-2xl flex flex-col items-center justify-center border border-gray-100 shadow-sm cursor-pointer active:scale-95 transition-transform">
-                    <div class="w-16 h-16 flex items-center justify-center text-gray-800 mb-2"><span class="material-icons-outlined text-5xl">phone_iphone</span></div>
-                    <span class="font-bold text-sm text-gray-800">Apple iOS</span>
+                <div onclick="triggerSearchHub('Apple iOS Solutions')" class="bg-white p-6 rounded-2xl flex flex-col items-center justify-center border border-gray-100 shadow-xs cursor-pointer active:scale-95 transition-transform hover:border-purple-200">
+                    <div class="w-20 h-20 flex items-center justify-center text-gray-800 mb-2"><span class="material-icons-outlined text-6xl">phone_iphone</span></div>
+                    <span class="font-bold text-base text-gray-800">Apple iOS</span>
                 </div>
             </section>
 
             <section id="screen-live" class="view-screen hidden flex-1 flex flex-col bg-white">
-                <div class="flex border-b border-gray-100 bg-gray-50 sticky top-0 z-10 px-2 py-1.5 items-center justify-between">
-                    <span class="text-xs font-black text-gray-500 uppercase tracking-wider pl-2">MHTechWord Feed Index</span>
-                    <button onclick="loadLiveBlogspotFeed()" class="text-purple-600 p-1 hover:bg-purple-50 rounded-lg flex items-center justify-center"><span class="material-icons-outlined text-sm">refresh</span></button>
+                <div class="flex border-b border-gray-100 bg-gray-50 sticky top-0 z-10 px-6 py-2.5 items-center justify-between">
+                    <span class="text-xs font-black text-gray-500 uppercase tracking-wider">MHTechWord Feed Index</span>
+                    <button onclick="loadLiveBlogspotFeed()" class="text-purple-600 p-1.5 hover:bg-purple-50 rounded-lg flex items-center justify-center cursor-pointer"><span class="material-icons-outlined text-base">refresh</span></button>
                 </div>
                 
-                <div id="live-feed-loader" class="flex-1 flex flex-col items-center justify-center py-20 text-gray-400">
+                <div id="live-feed-loader" class="flex-1 flex flex-col items-center justify-center py-24 text-gray-400">
                     <div class="w-8 h-8 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mb-3"></div>
                     <p class="text-xs font-bold tracking-wide">Syncing Blogspot Stream...</p>
                 </div>
                 
-                <div id="live-feed-container" class="divide-y divide-gray-100 hidden"></div>
+                <div id="live-feed-container" class="divide-y divide-gray-100 hidden max-w-4xl mx-auto w-full px-4"></div>
             </section>
 
-            <section id="screen-premium" class="view-screen hidden p-4 space-y-4">
-                <div class="bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900 rounded-3xl p-5 text-white shadow-xl relative overflow-hidden">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-purple-500/10 rounded-full blur-xl"></div>
+            <section id="screen-premium" class="view-screen hidden p-6 max-w-4xl mx-auto w-full space-y-6">
+                <div class="bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+                    <div class="absolute -right-6 -top-6 w-32 h-32 bg-purple-500/10 rounded-full blur-xl"></div>
                     
                     <div class="flex items-center justify-between mb-2">
-                        <h2 class="text-xl font-black tracking-wide">MHTECH Solutions</h2>
-                        <span class="flex items-center gap-1 bg-amber-500 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded-full shadow-md animate-pulse">
-                            <span class="material-icons-outlined text-xs">stars</span>PREMIUM
+                        <h2 class="text-2xl font-black tracking-wide">MHTECH Solutions</h2>
+                        <span class="flex items-center gap-1 bg-amber-500 text-slate-950 text-xs font-black px-3 py-1 rounded-full shadow-md animate-pulse">
+                            <span class="material-icons-outlined text-sm">stars</span>PREMIUM
                         </span>
                     </div>
                     
-                    <div class="mt-4 bg-black/30 backdrop-blur-md rounded-xl p-3 border border-white/5 flex items-center justify-between">
+                    <div class="mt-6 bg-black/30 backdrop-blur-md rounded-xl p-4 border border-white/5 flex items-center justify-between">
                         <div class="flex items-center gap-2">
-                            <span class="material-icons-outlined text-sm text-purple-400">lan</span>
-                            <span class="text-[10px] font-bold text-gray-300 uppercase tracking-wider">Client Connection Node:</span>
+                            <span class="material-icons-outlined text-base text-purple-400">lan</span>
+                            <span class="text-xs font-bold text-gray-300 uppercase tracking-wider">Client Connection Node:</span>
                         </div>
-                        <span id="browser-ip-display" class="font-mono text-xs text-green-400 font-bold bg-slate-950/50 px-2 py-0.5 rounded border border-green-500/20">Detecting...</span>
+                        <span id="browser-ip-display" class="font-mono text-sm text-green-400 font-bold bg-slate-950/50 px-3 py-1 rounded border border-green-500/20">Detecting...</span>
                     </div>
                 </div>
 
-                <div class="space-y-2">
-                    <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest pl-1">Diagnostic Libraries</h3>
+                <div class="space-y-3">
+                    <h3 class="text-xs font-black text-gray-400 uppercase tracking-widest pl-1">Diagnostic Libraries</h3>
                     
-                    <div class="grid grid-cols-1 gap-2">
-                        <div onclick="launchIphonePhotoFeed()" class="bg-white p-3.5 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div onclick="launchIphonePhotoFeed()" class="bg-white p-4 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
                             <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-100"><span class="material-icons-outlined text-lg">image</span></div>
-                                <span class="font-black text-xs text-gray-800">iPhone Display Solution</span>
+                                <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-100"><span class="material-icons-outlined text-xl">image</span></div>
+                                <span class="font-black text-sm text-gray-800">iPhone Display Solution</span>
                             </div>
-                            <span class="bg-purple-100 text-purple-700 font-bold text-[8px] px-2 py-0.5 rounded-full tracking-wide uppercase">Photo Feed</span>
+                            <span class="bg-purple-100 text-purple-700 font-bold text-[9px] px-2.5 py-1 rounded-full tracking-wide uppercase">Photo Feed</span>
                         </div>
 
-                        <div onclick="launchAndroidPhotoFeed()" class="bg-white p-3.5 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
+                        <div onclick="launchAndroidPhotoFeed()" class="bg-white p-4 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
                             <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-xl bg-green-50 flex items-center justify-center text-green-600 group-hover:bg-green-100"><span class="material-icons-outlined text-lg">adb</span></div>
-                                <span class="font-black text-xs text-gray-800">Android Solution Item</span>
+                                <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-600 group-hover:bg-green-100"><span class="material-icons-outlined text-xl">adb</span></div>
+                                <span class="font-black text-sm text-gray-800">Android Solution Item</span>
                             </div>
-                            <span class="bg-green-100 text-green-700 font-bold text-[8px] px-2 py-0.5 rounded-full tracking-wide uppercase">Photo Feed</span>
+                            <span class="bg-green-100 text-green-700 font-bold text-[9px] px-2.5 py-1 rounded-full tracking-wide uppercase">Photo Feed</span>
                         </div>
 
-                        <div onclick="launchInteractivePanicPortal()" class="bg-white p-3.5 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
+                        <div onclick="launchInteractivePanicPortal()" class="bg-white p-4 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
                             <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center text-red-600 group-hover:bg-red-100"><span class="material-icons-outlined text-lg">bug_report</span></div>
-                                <span class="font-black text-xs text-gray-800">Panic Log Diagnostics</span>
+                                <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-600 group-hover:bg-red-100"><span class="material-icons-outlined text-xl">bug_report</span></div>
+                                <span class="font-black text-sm text-gray-800">Panic Log Diagnostics</span>
                             </div>
-                            <span class="bg-red-100 text-red-700 font-bold text-[8px] px-2 py-0.5 rounded-full tracking-wide uppercase">Live Tool</span>
+                            <span class="bg-red-100 text-red-700 font-bold text-[9px] px-2.5 py-1 rounded-full tracking-wide uppercase">Live Tool</span>
                         </div>
 
-                        <div onclick="launchComboMatrixPortal()" class="bg-white p-3.5 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
+                        <div onclick="launchComboMatrixPortal()" class="bg-white p-4 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
                             <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 group-hover:bg-amber-100"><span class="material-icons-outlined text-lg">layers</span></div>
-                                <span class="font-black text-xs text-gray-800">Combo Support Matrix</span>
+                                <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 group-hover:bg-amber-100"><span class="material-icons-outlined text-xl">layers</span></div>
+                                <span class="font-black text-sm text-gray-800">Combo Support Matrix</span>
                             </div>
-                            <span class="bg-amber-100 text-amber-700 font-bold text-[8px] px-2 py-0.5 rounded-full tracking-wide uppercase">Live Tool</span>
+                            <span class="bg-amber-100 text-amber-700 font-bold text-[9px] px-2.5 py-1 rounded-full tracking-wide uppercase">Live Tool</span>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section id="screen-iphone-photos" class="view-screen hidden flex-1 flex flex-col bg-gray-50">
-                <div class="bg-white px-4 pt-3 pb-2 border-b border-gray-100 flex items-center gap-3 sticky top-0 z-20 shrink-0 shadow-xs">
-                    <button onclick="navigateTo('premium', 'Profile')" class="text-gray-700 flex items-center justify-center p-1 hover:bg-gray-100 rounded-lg"><span class="material-icons-outlined">arrow_back</span></button>
+                <div class="bg-white px-6 pt-4 pb-3 border-b border-gray-100 flex items-center gap-4 sticky top-0 z-20 shrink-0 shadow-xs">
+                    <button onclick="navigateTo('premium', 'Profile')" class="text-gray-700 flex items-center justify-center p-1 hover:bg-gray-100 rounded-lg cursor-pointer"><span class="material-icons-outlined">arrow_back</span></button>
                     <div>
-                        <h4 class="font-black text-xs text-gray-900 uppercase tracking-wide leading-none">iPhone Display Feeds</h4>
-                        <span class="text-[9px] font-bold text-purple-600 uppercase tracking-wider">Hardware Jumper Layouts</span>
+                        <h4 class="font-black text-sm text-gray-900 uppercase tracking-wide leading-none">iPhone Display Feeds</h4>
+                        <span class="text-[10px] font-bold text-purple-600 uppercase tracking-wider">Hardware Jumper Layouts</span>
                     </div>
                 </div>
 
-                <div class="p-3 bg-white border-b border-gray-200/60 sticky top-12 z-10 shrink-0">
-                    <div class="relative flex items-center">
-                        <span class="material-icons-outlined absolute left-3 text-gray-400 text-sm pointer-events-none">image_search</span>
+                <div class="p-4 bg-white border-b border-gray-200/60 sticky top-14 z-10 shrink-0">
+                    <div class="relative flex items-center max-w-3xl mx-auto w-full">
+                        <span class="material-icons-outlined absolute left-3 text-gray-400 text-base pointer-events-none">image_search</span>
                         <input 
                             id="photo-feed-search" 
                             type="text" 
                             placeholder="Search diagrams (e.g., 13 pro, bypass)..." 
                             oninput="executePhotoAdvancedSearch()"
-                            class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-9 py-1.5 text-xs font-semibold text-gray-800 placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:bg-white transition-all"
+                            class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-9 py-2 text-sm font-semibold text-gray-800 placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:bg-white transition-all"
                         >
                         <button 
                             id="clear-photo-search-btn" 
@@ -362,48 +364,48 @@
                     </div>
                 </div>
 
-                <div id="iphone-photos-list" class="p-3 space-y-3 flex-1 overflow-y-auto no-scrollbar">
+                <div id="iphone-photos-list" class="p-4 space-y-4 flex-1 overflow-y-auto no-scrollbar max-w-4xl mx-auto w-full">
                     
                     <div class="photo-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs flex flex-col" data-title="iPhone 13 Pro Max White Screen Bypass Trace" data-desc="High-visibility jumper tracking mapping sequence across clock pin logic rails.">
                         <div class="relative aspect-video bg-slate-900 group overflow-hidden cursor-zoom-in" onclick="zoomDiagnosticPhoto('https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&auto=format&fit=crop&q=80', 'iPhone 13 Pro Max White Screen Bypass Trace')">
                             <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&auto=format&fit=crop&q=80" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="Schematic Map">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 p-3 flex items-end">
-                                <span class="bg-purple-600 text-white font-black text-[8px] px-2 py-0.5 rounded tracking-wide uppercase">Trace bypass Line</span>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 p-4 flex items-end">
+                                <span class="bg-purple-600 text-white font-black text-[10px] px-2.5 py-1 rounded tracking-wide uppercase">Trace bypass Line</span>
                             </div>
                         </div>
-                        <div class="p-3">
-                            <h5 class="photo-card-title text-xs font-black text-gray-900">iPhone 13 Pro Max White Screen Bypass Trace</h5>
-                            <p class="photo-card-desc text-[10px] text-gray-400 font-semibold mt-0.5">High-visibility jumper tracking mapping sequence across clock pin logic rails.</p>
+                        <div class="p-4">
+                            <h5 class="photo-card-title text-sm font-black text-gray-900">iPhone 13 Pro Max White Screen Bypass Trace</h5>
+                            <p class="photo-card-desc text-xs text-gray-400 font-semibold mt-1">High-visibility jumper tracking mapping sequence across clock pin logic rails.</p>
                         </div>
                     </div>
 
-                    <div id="photo-feed-empty-state" class="bg-white rounded-2xl border border-gray-200 p-8 text-center hidden">
-                        <span class="material-icons-outlined text-4xl text-gray-300 mb-1">wallpaper</span>
-                        <p class="text-xs font-black text-gray-700">No Diagrams Found</p>
-                        <p class="text-[10px] text-gray-400 font-medium mt-0.5">Try searching another query or phone model rail.</p>
+                    <div id="photo-feed-empty-state" class="bg-white rounded-2xl border border-gray-200 p-10 text-center hidden">
+                        <span class="material-icons-outlined text-5xl text-gray-300 mb-2">wallpaper</span>
+                        <p class="text-sm font-black text-gray-700">No Diagrams Found</p>
+                        <p class="text-xs text-gray-400 font-medium mt-1">Try searching another query or phone model rail.</p>
                     </div>
 
                 </div>
             </section>
 
             <section id="screen-android-photos" class="view-screen hidden flex-1 flex flex-col bg-gray-50">
-                <div class="bg-white px-4 pt-3 pb-2 border-b border-gray-100 flex items-center gap-3 sticky top-0 z-20 shrink-0 shadow-xs">
-                    <button onclick="navigateTo('premium', 'Profile')" class="text-gray-700 flex items-center justify-center p-1 hover:bg-gray-100 rounded-lg"><span class="material-icons-outlined">arrow_back</span></button>
+                <div class="bg-white px-6 pt-4 pb-3 border-b border-gray-100 flex items-center gap-4 sticky top-0 z-20 shrink-0 shadow-xs">
+                    <button onclick="navigateTo('premium', 'Profile')" class="text-gray-700 flex items-center justify-center p-1 hover:bg-gray-100 rounded-lg cursor-pointer"><span class="material-icons-outlined">arrow_back</span></button>
                     <div>
-                        <h4 class="font-black text-xs text-gray-900 uppercase tracking-wide leading-none">Android Display Feeds</h4>
-                        <span class="text-[9px] font-bold text-green-600 uppercase tracking-wider">Hardware Layout & Traces</span>
+                        <h4 class="font-black text-sm text-gray-900 uppercase tracking-wide leading-none">Android Display Feeds</h4>
+                        <span class="text-[10px] font-bold text-green-600 uppercase tracking-wider">Hardware Layout & Traces</span>
                     </div>
                 </div>
 
-                <div class="p-3 bg-white border-b border-gray-200/60 sticky top-12 z-10 shrink-0">
-                    <div class="relative flex items-center">
+                <div class="p-4 bg-white border-b border-gray-200/60 sticky top-12 z-10 shrink-0">
+                    <div class="relative flex items-center max-w-3xl mx-auto w-full">
                         <span class="material-icons-outlined absolute left-3 text-gray-400 text-sm pointer-events-none">saved_search</span>
                         <input 
                             id="android-feed-search" 
                             type="text" 
                             placeholder="Search android diagrams (e.g., samsung, poco)..." 
                             oninput="executeAndroidAdvancedSearch()"
-                            class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-9 py-1.5 text-xs font-semibold text-gray-800 placeholder-gray-400 focus:outline-none focus:border-green-500 focus:bg-white transition-all"
+                            class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-9 py-2 text-sm font-semibold text-gray-800 placeholder-gray-400 focus:outline-none focus:border-green-500 focus:bg-white transition-all"
                         >
                         <button 
                             id="clear-android-search-btn" 
@@ -415,108 +417,110 @@
                     </div>
                 </div>
 
-                <div id="android-solutions-list" class="p-3 space-y-3 flex-1 overflow-y-auto no-scrollbar">
+                <div id="android-solutions-list" class="p-4 space-y-4 flex-1 overflow-y-auto no-scrollbar max-w-4xl mx-auto w-full">
                     
                     <div class="android-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs flex flex-col" data-title="Samsung S23 Ultra AMOLED Flickering Line Patch" data-desc="Display connector pin re-routing procedure isolating damaged clock voltage lines.">
                         <div class="relative aspect-video bg-slate-900 group overflow-hidden cursor-zoom-in" onclick="zoomDiagnosticPhoto('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80', 'Samsung S23 Ultra AMOLED Flickering Line Patch')">
                             <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="Schematic Map">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 p-3 flex items-end">
-                                <span class="bg-green-600 text-white font-black text-[8px] px-2 py-0.5 rounded tracking-wide uppercase">AMOLED Voltage Fix</span>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 p-4 flex items-end">
+                                <span class="bg-green-600 text-white font-black text-[10px] px-2.5 py-1 rounded tracking-wide uppercase">AMOLED Voltage Fix</span>
                             </div>
                         </div>
-                        <div class="p-3">
-                            <h5 class="android-card-title text-xs font-black text-gray-900">Samsung S23 Ultra AMOLED Flickering Line Patch</h5>
-                            <p class="android-card-desc text-[10px] text-gray-400 font-semibold mt-0.5">Display connector pin re-routing procedure isolating damaged clock voltage lines.</p>
+                        <div class="p-4">
+                            <h5 class="android-card-title text-sm font-black text-gray-900">Samsung S23 Ultra AMOLED Flickering Line Patch</h5>
+                            <p class="android-card-desc text-xs text-gray-400 font-semibold mt-1">Display connector pin re-routing procedure isolating damaged clock voltage lines.</p>
                         </div>
                     </div>
 
-                    <div id="android-feed-empty-state" class="bg-white rounded-2xl border border-gray-200 p-8 text-center hidden">
-                        <span class="material-icons-outlined text-4xl text-gray-300 mb-1">no_sim</span>
-                        <p class="text-xs font-black text-gray-700">No Diagrams Found</p>
-                        <p class="text-[10px] text-gray-400 font-medium mt-0.5">Try searching another Android model or chipset query.</p>
+                    <div id="android-feed-empty-state" class="bg-white rounded-2xl border border-gray-200 p-10 text-center hidden">
+                        <span class="material-icons-outlined text-5xl text-gray-300 mb-2">no_sim</span>
+                        <p class="text-sm font-black text-gray-700">No Diagrams Found</p>
+                        <p class="text-xs text-gray-400 font-medium mt-1">Try searching another Android model or chipset query.</p>
                     </div>
 
                 </div>
             </section>
 
             <section id="screen-premium-player" class="view-screen hidden flex flex-col bg-gray-950 min-h-full">
-                <div class="bg-gray-900 px-4 py-3 flex items-center justify-between text-white sticky top-0 z-30 shrink-0">
-                    <button id="player-back-btn" onclick="navigateTo('home', 'Latest')" class="flex items-center text-gray-300"><span class="material-icons-outlined">arrow_back</span></button>
-                    <span id="player-view-type" class="text-[10px] font-black uppercase tracking-widest text-gray-400">Playing Stream View</span>
+                <div class="bg-gray-900 px-6 py-4 flex items-center justify-between text-white sticky top-0 z-30 shrink-0">
+                    <button id="player-back-btn" onclick="navigateTo('home', 'Latest')" class="flex items-center text-gray-300 cursor-pointer"><span class="material-icons-outlined">arrow_back</span></button>
+                    <span id="player-view-type" class="text-xs font-black uppercase tracking-widest text-gray-400">Playing Stream View</span>
                     <span class="material-icons-outlined text-purple-400">stars</span>
                 </div>
 
-                <div id="player-video-wrapper" class="relative w-full aspect-video bg-black sticky top-12 z-20 shadow-md">
+                <div id="player-video-wrapper" class="relative w-full aspect-video max-w-5xl mx-auto bg-black sticky z-20 shadow-md">
                     <video id="premium-native-player" class="w-full h-full object-contain" controls autoplay preload="auto">
                         <source id="premium-video-source" src="" type="video/mp4">
                     </video>
                 </div>
 
-                <div id="player-content-body" class="bg-white flex-1 p-5 rounded-t-3xl shadow-inner overflow-y-auto no-scrollbar">
-                    <div class="mb-4">
-                        <span id="premium-player-tag" class="text-[10px] bg-purple-100 text-purple-700 font-black tracking-wider uppercase px-2 py-0.5 rounded">MHTECH Core Library</span>
-                        <h2 id="premium-player-title" class="text-lg font-black text-gray-900 mt-2 leading-tight">Premium Media Stream</h2>
-                        <p id="premium-player-meta" class="text-[10px] text-gray-400 font-bold mt-1 uppercase tracking-wide hidden"></p>
-                    </div>
-                    <hr class="border-gray-100 my-3">
-                    
-                    <div id="premium-player-article-body" class="text-xs text-gray-700 leading-relaxed space-y-3 font-medium">
-                        Select a row card layout frame to view detailed diagnostics data matrices.
+                <div id="player-content-body" class="bg-white flex-1 p-6 rounded-t-3xl shadow-inner overflow-y-auto no-scrollbar">
+                    <div class="max-w-4xl mx-auto w-full">
+                        <div class="mb-4">
+                            <span id="premium-player-tag" class="text-xs bg-purple-100 text-purple-700 font-black tracking-wider uppercase px-2.5 py-1 rounded">MHTECH Core Library</span>
+                            <h2 id="premium-player-title" class="text-xl font-black text-gray-900 mt-3 leading-tight">Premium Media Stream</h2>
+                            <p id="premium-player-meta" class="text-xs text-gray-400 font-bold mt-1 uppercase tracking-wide hidden"></p>
+                        </div>
+                        <hr class="border-gray-100 my-4">
+                        
+                        <div id="premium-player-article-body" class="text-sm text-gray-700 leading-relaxed space-y-4 font-medium">
+                            Select a row card layout frame to view detailed diagnostics data matrices.
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="screen-downloads" class="view-screen hidden flex-1 flex flex-col items-center justify-center h-[400px] text-gray-400 p-6">
-                <span class="material-icons-outlined text-6xl mb-2">download_for_offline</span>
-                <p class="text-base font-bold text-gray-700">Nothing Downloaded Yet</p>
+            <section id="screen-downloads" class="view-screen hidden flex-1 flex flex-col items-center justify-center h-[500px] text-gray-400 p-6">
+                <span class="material-icons-outlined text-7xl mb-2">download_for_offline</span>
+                <p class="text-lg font-bold text-gray-700">Nothing Downloaded Yet</p>
             </section>
 
             <section id="screen-search-hub" class="view-screen hidden flex-1 flex flex-col bg-white">
-                <div class="bg-white px-4 py-3 border-b border-gray-100 flex items-center justify-between sticky top-0 z-10">
+                <div class="bg-white px-6 py-4 border-b border-gray-100 flex items-center justify-between sticky top-0 z-10">
                     <div class="flex items-center gap-2">
-                        <button onclick="navigateTo('home', 'Latest')" class="text-gray-700 flex items-center"><span class="material-icons-outlined">arrow_back</span></button>
-                        <span id="search-hub-title" class="font-bold text-gray-800 text-md">Solution Hub</span>
+                        <button onclick="navigateTo('home', 'Latest')" class="text-gray-700 flex items-center cursor-pointer"><span class="material-icons-outlined">arrow_back</span></button>
+                        <span id="search-hub-title" class="font-bold text-lg text-gray-800">Solution Hub</span>
                     </div>
                 </div>
-                <div class="p-8 text-center text-xs font-bold text-gray-400">
+                <div class="p-10 text-center text-sm font-bold text-gray-400">
                     Showing query solutions dataset records container.
                 </div>
             </section>
         </main>
 
-        <nav class="bg-white border-t border-gray-100 py-2 px-6 flex justify-between items-center shrink-0">
-            <button onclick="navigateTo('home', 'Latest')" id="nav-home" class="nav-btn flex flex-col items-center text-blue-600">
-                <span class="material-icons-outlined text-2xl">home</span>
+        <nav class="bg-white border-t border-gray-100 py-3 px-12 flex justify-around items-center shrink-0 shadow-lg">
+            <button onclick="navigateTo('home', 'Latest')" id="nav-home" class="nav-btn flex flex-col items-center text-blue-600 cursor-pointer">
+                <span class="material-icons-outlined text-3xl">home</span>
             </button>
-            <button onclick="navigateTo('categories', 'Category')" id="nav-categories" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600">
-                <span class="material-icons-outlined text-2xl">explore</span>
+            <button onclick="navigateTo('categories', 'Category')" id="nav-categories" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 cursor-pointer">
+                <span class="material-icons-outlined text-3xl">explore</span>
             </button>
-            <button onclick="navigateTo('live', 'Live Feed')" id="nav-live" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600">
-                <span class="material-icons-outlined text-2xl">sensors</span>
+            <button onclick="navigateTo('live', 'Live Feed')" id="nav-live" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 cursor-pointer">
+                <span class="material-icons-outlined text-3xl">sensors</span>
             </button>
-            <button onclick="navigateTo('premium', 'Profile')" id="nav-premium" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600">
-                <span class="material-icons-outlined text-2xl">workspace_premium</span>
+            <button onclick="navigateTo('premium', 'Profile')" id="nav-premium" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 cursor-pointer">
+                <span class="material-icons-outlined text-3xl">workspace_premium</span>
             </button>
-            <button onclick="navigateTo('downloads', 'Downloads')" id="nav-downloads" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600">
-                <span class="material-icons-outlined text-2xl">bookmark</span>
+            <button onclick="navigateTo('downloads', 'Downloads')" id="nav-downloads" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 cursor-pointer">
+                <span class="material-icons-outlined text-3xl">bookmark</span>
             </button>
         </nav>
 
         <div id="side-menu" class="absolute inset-0 bg-black/40 z-40 hidden transition-opacity duration-300 opacity-0" onclick="toggleSideMenu()">
-            <div class="absolute bottom-0 inset-x-0 bg-white rounded-t-3xl p-4 space-y-1 transform translate-y-full transition-transform duration-300" onclick="event.stopPropagation()">
-                <div class="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4"></div>
-                <button class="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl text-left text-gray-700 font-medium text-sm">
+            <div class="absolute bottom-0 inset-x-0 bg-white rounded-t-3xl p-6 space-y-2 transform translate-y-full transition-transform duration-300 max-w-2xl mx-auto" onclick="event.stopPropagation()">
+                <div class="w-16 h-1.5 bg-gray-300 rounded-full mx-auto mb-4"></div>
+                <button class="w-full flex items-center gap-4 px-4 py-3.5 hover:bg-gray-50 rounded-xl text-left text-gray-700 font-medium text-base cursor-pointer">
                     <span class="material-icons-outlined">send</span> Request Video
                 </button>
             </div>
         </div>
 
-        <div id="premium-photo-modal" class="absolute inset-0 bg-black/95 z-50 hidden flex flex-col items-center justify-center p-4 transition-opacity opacity-0" onclick="closeDiagnosticPhoto()">
-            <button class="absolute top-4 right-4 text-white/70 hover:text-white bg-white/10 p-2 rounded-full backdrop-blur-md focus:outline-none"><span class="material-icons-outlined">close</span></button>
-            <div class="w-full max-h-[70%] flex items-center justify-center p-2" onclick="event.stopPropagation()">
-                <img id="modal-zoomed-img" src="" class="max-w-full max-h-full object-contain rounded-lg border border-white/10 shadow-2xl" alt="Zoomed Schematic UI">
+        <div id="premium-photo-modal" class="absolute inset-0 bg-black/95 z-50 hidden flex flex-col items-center justify-center p-6 transition-opacity opacity-0" onclick="closeDiagnosticPhoto()">
+            <button class="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 p-2ef rounded-full backdrop-blur-md focus:outline-none cursor-pointer"><span class="material-icons-outlined text-2xl">close</span></button>
+            <div class="w-full max-h-[80%] flex items-center justify-center p-2" onclick="event.stopPropagation()">
+                <img id="modal-zoomed-img" src="" class="max-w-full max-h-full object-contain rounded-xl border border-white/10 shadow-2xl" alt="Zoomed Schematic UI">
             </div>
-            <p id="modal-zoomed-title" class="text-white text-center text-xs font-black px-6 mt-4 tracking-wide uppercase leading-tight"></p>
+            <p id="modal-zoomed-title" class="text-white text-center text-sm font-black px-6 mt-6 tracking-wide uppercase leading-tight"></p>
         </div>
 
     </div>
@@ -573,18 +577,17 @@
             document.getElementById('premium-player-tag').parentNode.classList.add('hidden');
             document.getElementById('premium-player-article-body').parentNode.className = "w-full h-full flex flex-col flex-1";
             document.getElementById('premium-player-article-body').innerHTML = `
-                <iframe src="https://muhammedhaseeb9645.github.io/Mhtech/" class="w-full h-[calc(100vh-180px)] border-0 flex-1" allow="allow-scripts allow-same-origin"></iframe>
+                <iframe src="https://muhammedhaseeb9645.github.io/Mhtech/" class="w-full h-[calc(100vh-100px)] border-0 flex-1" allow="allow-scripts allow-same-origin"></iframe>
             `;
             navigateTo('premium-player', 'Panic Log Diagnostics');
         }
 
-        // MODIFIED: Launches sandboxed layout loading your custom Combo Support Matrix target url
+        // Launches sandboxed frame for external Combo Support Matrix target url
         function launchComboMatrixPortal() {
             document.querySelectorAll('video').forEach(v => v.pause());
             document.getElementById('player-back-btn').setAttribute('onclick', "navigateTo('premium', 'Profile')");
             document.getElementById('player-view-type').textContent = "Matrix Support Panel";
             
-            // Hide standard video asset layers to mount embedded framework canvas cleanly
             document.getElementById('player-video-wrapper').classList.add('hidden');
             document.getElementById('player-content-body').className = "bg-white flex-1 p-0 overflow-hidden flex flex-col";
             document.getElementById('premium-player-tag').parentNode.classList.add('hidden'); 
@@ -593,7 +596,7 @@
             document.getElementById('premium-player-article-body').innerHTML = `
                 <iframe 
                     src="https://muhammedhaseeb9645.github.io/Combo-Support" 
-                    class="w-full h-[calc(100vh-180px)] border-0 flex-1" 
+                    class="w-full h-[calc(100vh-100px)] border-0 flex-1" 
                     allow="allow-scripts allow-same-origin">
                 </iframe>
             `;
@@ -750,18 +753,18 @@
                     const postThumbnail = post.thumbnail || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150&auto=format&fit=crop&q=60';
 
                     const itemRowMarkup = `
-                        <div onclick="openLiveArticleReader(${index})" class="p-4 flex gap-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors">
-                            <div class="relative w-24 h-16 shrink-0 rounded-xl overflow-hidden shadow-xs border border-gray-100 bg-gray-100">
+                        <div onclick="openLiveArticleReader(${index})" class="p-4 flex gap-4 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors">
+                            <div class="relative w-28 h-20 shrink-0 rounded-xl overflow-hidden shadow-xs border border-gray-100 bg-gray-100">
                                 <img src="${postThumbnail}" class="w-full h-full object-cover" alt="Thumbnail">
-                                <div class="absolute inset-0 bg-black/20 flex items-center justify-center"><span class="material-icons-outlined text-white text-md bg-purple-600/80 p-1 rounded-full">article</span></div>
+                                <div class="absolute inset-0 bg-black/20 flex items-center justify-center"><span class="material-icons-outlined text-white text-lg bg-purple-600/80 p-1.5 rounded-full">article</span></div>
                             </div>
                             <div class="flex flex-col justify-between flex-1 min-w-0">
                                 <div>
-                                    <span class="text-[9px] text-purple-600 font-bold uppercase tracking-wider">${rawAuthor} • ${rawDate}</span>
-                                    <h4 class="text-xs font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">${postTitle}</h4>
+                                    <span class="text-[10px] text-purple-600 font-bold uppercase tracking-wider">${rawAuthor} • ${rawDate}</span>
+                                    <h4 class="text-sm font-black text-gray-900 line-clamp-2 leading-tight mt-0.5">${postTitle}</h4>
                                 </div>
-                                <div class="flex items-center justify-end text-[10px] text-gray-400 font-medium mt-1">
-                                    <span class="bg-purple-50 text-purple-700 px-1.5 py-0.5 rounded text-[9px] font-bold">${tagLabel}</span>
+                                <div class="flex items-center justify-end text-xs text-gray-400 font-medium mt-1">
+                                    <span class="bg-purple-50 text-purple-700 px-2 py-0.5 rounded text-[10px] font-bold">${tagLabel}</span>
                                 </div>
                             </div>
                         </div>
@@ -774,7 +777,7 @@
                 targetLoader.innerHTML = `
                     <span class="material-icons-outlined text-4xl text-red-500 mb-2">error_outline</span>
                     <p class="text-xs font-bold text-gray-700">Failed to stream feed array</p>
-                    <button onclick="loadLiveBlogspotFeed()" class="mt-3 bg-purple-600 text-white font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg shadow-sm">Retry Sync</button>
+                    <button onclick="loadLiveBlogspotFeed()" class="mt-3 bg-purple-600 text-white font-bold text-xs uppercase tracking-wider px-4 py-2 rounded-xl shadow-sm cursor-pointer">Retry Sync</button>
                 `;
             }
         }
@@ -786,12 +789,12 @@
             document.getElementById('player-back-btn').setAttribute('onclick', "navigateTo('live', 'Live Feed')");
             document.getElementById('player-view-type').textContent = "Article Reader View";
             document.getElementById('player-video-wrapper').classList.add('hidden');
-            document.getElementById('player-content-body').className = "bg-white flex-1 p-5 overflow-y-auto no-scrollbar";
+            document.getElementById('player-content-body').className = "bg-white flex-1 p-6 overflow-y-auto no-scrollbar";
             document.getElementById('premium-player-tag').parentNode.classList.remove('hidden');
 
             let textBodyContent = article.content || article.description || 'No data payload returned.';
-            if(textBodyContent.trim().startsWith('<')) textBodyContent = `<div class="prose max-w-none text-gray-800 break-words space-y-2 font-medium">${textBodyContent}</div>`;
-            if(article.link) textBodyContent += `<div class="pt-4"><a href="${article.link}" target="_blank" class="inline-flex items-center gap-1.5 bg-purple-600 text-white px-4 py-2 rounded-xl text-[11px] font-black tracking-wide uppercase shadow-sm"><span>Open Original Post</span><span class="material-icons-outlined text-xs">launch</span></a></div>`;
+            if(textBodyContent.trim().startsWith('<')) textBodyContent = `<div class="prose max-w-none text-gray-800 break-words space-y-3 font-medium">${textBodyContent}</div>`;
+            if(article.link) textBodyContent += `<div class="pt-6"><a href="${article.link}" target="_blank" class="inline-flex items-center gap-2 bg-purple-600 text-white px-5 py-2.5 rounded-xl text-xs font-black tracking-wide uppercase shadow-sm"><span>Open Original Post</span><span class="material-icons-outlined text-xs">launch</span></a></div>`;
 
             document.getElementById('premium-player-tag').textContent = (article.categories && article.categories.length > 0) ? article.categories[0] : 'Blogspot';
             document.getElementById('premium-player-title').textContent = article.title || 'Untitled Update';
@@ -806,13 +809,13 @@
             document.getElementById('player-back-btn').setAttribute('onclick', "navigateTo('home', 'Latest')");
             document.getElementById('player-view-type').textContent = "Playing Stream View";
             document.getElementById('player-video-wrapper').classList.remove('hidden');
-            document.getElementById('player-content-body').className = "bg-white flex-1 p-5 rounded-t-3xl shadow-inner overflow-y-auto no-scrollbar";
+            document.getElementById('player-content-body').className = "bg-white flex-1 p-6 rounded-t-3xl shadow-inner overflow-y-auto no-scrollbar";
             document.getElementById('premium-player-tag').parentNode.classList.remove('hidden');
             
             if(tagLabel) document.getElementById('premium-player-tag').textContent = tagLabel;
             document.getElementById('premium-player-title').textContent = videoTitle;
             document.getElementById('premium-player-meta').classList.add('hidden');
-            document.getElementById('premium-player-article-body').innerHTML = `<div class="p-4 bg-gray-50 rounded-xl border border-dashed border-gray-200 text-center text-gray-400 font-semibold text-[11px]">Streaming active diagnostic tracking matrix data sequence updates.</div>`;
+            document.getElementById('premium-player-article-body').innerHTML = `<div class="p-4 bg-gray-50 rounded-xl border border-dashed border-gray-200 text-center text-gray-400 font-semibold text-xs">Streaming active diagnostic tracking matrix data sequence updates.</div>`;
             
             document.getElementById('premium-video-source').src = streamUrl;
             document.getElementById('premium-native-player').load();
@@ -850,6 +853,7 @@
             });
         }
 
+        // Utilitarian expressions
         function escapeRegExp(string) { return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
         function clearFeedSearch() {
             const queryInput = document.getElementById('feed-search-input');
