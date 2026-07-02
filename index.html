@@ -322,12 +322,12 @@
                             <span class="bg-red-100 text-red-700 font-bold text-[8px] px-2 py-0.5 rounded-full tracking-wide uppercase">Live Tool</span>
                         </div>
 
-                        <div onclick="triggerSearchHub('Combo Display Support')" class="bg-white p-3.5 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
+                        <div onclick="launchComboMatrixPortal()" class="bg-white p-3.5 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
                             <div class="flex items-center gap-3">
                                 <div class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 group-hover:bg-amber-100"><span class="material-icons-outlined text-lg">layers</span></div>
                                 <span class="font-black text-xs text-gray-800">Combo Support Matrix</span>
                             </div>
-                            <span class="material-icons-outlined text-gray-400 text-sm group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+                            <span class="bg-amber-100 text-amber-700 font-bold text-[8px] px-2 py-0.5 rounded-full tracking-wide uppercase">Live Tool</span>
                         </div>
                     </div>
                 </div>
@@ -564,29 +564,41 @@
         function launchIphonePhotoFeed() { navigateTo('iphone-photos', 'iPhone Display Solutions'); }
         function launchAndroidPhotoFeed() { navigateTo('android-photos', 'Android Display Solutions'); }
 
-        // MODIFIED: Injects live responsive web frame containing your target Github tool portal link inside screen view
         function launchInteractivePanicPortal() {
             document.querySelectorAll('video').forEach(v => v.pause());
             document.getElementById('player-back-btn').setAttribute('onclick', "navigateTo('premium', 'Profile')");
             document.getElementById('player-view-type').textContent = "Live Diagnostic Portal";
-            
-            // Hide local video track element frame completely to release canvas area
             document.getElementById('player-video-wrapper').classList.add('hidden');
             document.getElementById('player-content-body').className = "bg-white flex-1 p-0 overflow-hidden flex flex-col";
+            document.getElementById('premium-player-tag').parentNode.classList.add('hidden');
+            document.getElementById('premium-player-article-body').parentNode.className = "w-full h-full flex flex-col flex-1";
+            document.getElementById('premium-player-article-body').innerHTML = `
+                <iframe src="https://muhammedhaseeb9645.github.io/Mhtech/" class="w-full h-[calc(100vh-180px)] border-0 flex-1" allow="allow-scripts allow-same-origin"></iframe>
+            `;
+            navigateTo('premium-player', 'Panic Log Diagnostics');
+        }
 
-            document.getElementById('premium-player-tag').parentNode.classList.add('hidden'); // Clean headers
+        // MODIFIED: Launches sandboxed layout loading your custom Combo Support Matrix target url
+        function launchComboMatrixPortal() {
+            document.querySelectorAll('video').forEach(v => v.pause());
+            document.getElementById('player-back-btn').setAttribute('onclick', "navigateTo('premium', 'Profile')");
+            document.getElementById('player-view-type').textContent = "Matrix Support Panel";
             
-            // Mount sandboxed frame container pulling link inside current view screen dynamically
+            // Hide standard video asset layers to mount embedded framework canvas cleanly
+            document.getElementById('player-video-wrapper').classList.add('hidden');
+            document.getElementById('player-content-body').className = "bg-white flex-1 p-0 overflow-hidden flex flex-col";
+            document.getElementById('premium-player-tag').parentNode.classList.add('hidden'); 
+            
             document.getElementById('premium-player-article-body').parentNode.className = "w-full h-full flex flex-col flex-1";
             document.getElementById('premium-player-article-body').innerHTML = `
                 <iframe 
-                    src="https://muhammedhaseeb9645.github.io/Mhtech/" 
+                    src="https://muhammedhaseeb9645.github.io/Combo-Support" 
                     class="w-full h-[calc(100vh-180px)] border-0 flex-1" 
                     allow="allow-scripts allow-same-origin">
                 </iframe>
             `;
             
-            navigateTo('premium-player', 'Panic Log Diagnostics');
+            navigateTo('premium-player', 'Combo Support Matrix');
         }
 
         // Advanced Diagnostic Schematic Image Search Logic Engine (iPhone View)
