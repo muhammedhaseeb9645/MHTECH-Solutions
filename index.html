@@ -211,6 +211,11 @@
                 <div id="live-feed-container" class="divide-y divide-gray-100 hidden max-w-4xl mx-auto w-full px-4"></div>
             </section>
 
+            <!-- SHOPPING HUB PORTAL -->
+            <section id="screen-shopping" class="view-screen hidden flex-1 flex flex-col bg-white">
+                <iframe src="https://muhammedhaseeb9645.github.io/MH-SPARE-HUB" class="w-full h-full border-0 flex-1" allow="allow-scripts allow-same-origin"></iframe>
+            </section>
+
             <!-- USER DASHBOARD / PREMIUM HUBS -->
             <section id="screen-premium" class="view-screen hidden p-6 max-w-4xl mx-auto w-full space-y-6">
                 <div class="bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
@@ -443,21 +448,24 @@
         <!-- ========================================== -->
         <!--           BOTTOM NAVIGATION TAB            -->
         <!-- ========================================== -->
-        <nav class="bg-white border-t border-gray-100 py-3 px-12 flex justify-around items-center shrink-0 shadow-lg">
+        <nav class="bg-white border-t border-gray-100 py-3 px-6 flex justify-around items-center shrink-0 shadow-lg">
             <button onclick="navigateTo('home', 'Latest')" id="nav-home" class="nav-btn flex flex-col items-center text-blue-600 cursor-pointer">
-                <span class="material-icons-outlined text-3xl">home</span>
+                <span class="material-icons-outlined text-2xl">home</span>
             </button>
             <button onclick="navigateTo('categories', 'Category')" id="nav-categories" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 cursor-pointer">
-                <span class="material-icons-outlined text-3xl">explore</span>
+                <span class="material-icons-outlined text-2xl">explore</span>
+            </button>
+            <button onclick="navigateTo('shopping', 'Spare Hub')" id="nav-shopping" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 cursor-pointer">
+                <span class="material-icons-outlined text-2xl">shopping_bag</span>
             </button>
             <button onclick="navigateTo('live', 'Live Feed')" id="nav-live" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 cursor-pointer">
-                <span class="material-icons-outlined text-3xl">sensors</span>
+                <span class="material-icons-outlined text-2xl">sensors</span>
             </button>
             <button onclick="navigateTo('premium', 'Profile')" id="nav-premium" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 cursor-pointer">
-                <span class="material-icons-outlined text-3xl">workspace_premium</span>
+                <span class="material-icons-outlined text-2xl">workspace_premium</span>
             </button>
             <button onclick="navigateTo('downloads', 'Downloads')" id="nav-downloads" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 cursor-pointer">
-                <span class="material-icons-outlined text-3xl">bookmark</span>
+                <span class="material-icons-outlined text-2xl">bookmark</span>
             </button>
         </nav>
 
