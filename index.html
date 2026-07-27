@@ -252,22 +252,6 @@
                     <h3 class="text-xs font-black text-gray-400 uppercase tracking-widest pl-1">Diagnostic Libraries</h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div onclick="launchIphonePhotoFeed()" class="bg-white p-4 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-100"><span class="material-icons-outlined text-xl">image</span></div>
-                                <span class="font-black text-sm text-gray-800">iPhone Display Solution</span>
-                            </div>
-                            <span class="bg-purple-100 text-purple-700 font-bold text-[9px] px-2.5 py-1 rounded-full tracking-wide uppercase">Photo Feed</span>
-                        </div>
-
-                        <div onclick="launchAndroidPhotoFeed()" class="bg-white p-4 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-600 group-hover:bg-green-100"><span class="material-icons-outlined text-xl">adb</span></div>
-                                <span class="font-black text-sm text-gray-800">Android Solution Item</span>
-                            </div>
-                            <span class="bg-green-100 text-green-700 font-bold text-[9px] px-2.5 py-1 rounded-full tracking-wide uppercase">Photo Feed</span>
-                        </div>
-
                         <div onclick="launchInteractivePanicPortal()" class="bg-white p-4 rounded-2xl flex items-center justify-between border border-gray-200/60 shadow-xs cursor-pointer hover:bg-purple-50/20 active:scale-[0.99] transition-all group">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-600 group-hover:bg-red-100"><span class="material-icons-outlined text-xl">bug_report</span></div>
@@ -284,114 +268,6 @@
                             <span class="bg-amber-100 text-amber-700 font-bold text-[9px] px-2.5 py-1 rounded-full tracking-wide uppercase">Live Tool</span>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- IPHONE DISPLAY FEEDS PANEL -->
-            <section id="screen-iphone-photos" class="view-screen hidden flex-1 flex flex-col bg-gray-50">
-                <div class="bg-white px-6 pt-4 pb-3 border-b border-gray-100 flex items-center gap-4 sticky top-0 z-20 shrink-0 shadow-xs">
-                    <button onclick="navigateTo('premium', 'Profile')" class="text-gray-700 flex items-center justify-center p-1 hover:bg-gray-100 rounded-lg cursor-pointer"><span class="material-icons-outlined">arrow_back</span></button>
-                    <div>
-                        <h4 class="font-black text-sm text-gray-900 uppercase tracking-wide leading-none">iPhone Display Feeds</h4>
-                        <span class="text-[10px] font-bold text-purple-600 uppercase tracking-wider">Hardware Jumper Layouts</span>
-                    </div>
-                </div>
-
-                <div class="p-4 bg-white border-b border-gray-200/60 sticky top-14 z-10 shrink-0">
-                    <div class="relative flex items-center max-w-3xl mx-auto w-full">
-                        <span class="material-icons-outlined absolute left-3 text-gray-400 text-base pointer-events-none">image_search</span>
-                        <input 
-                            id="photo-feed-search" 
-                            type="text" 
-                            placeholder="Search diagrams (e.g., 13 pro, bypass)..." 
-                            oninput="executePhotoAdvancedSearch()"
-                            class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-9 py-2 text-sm font-semibold text-gray-800 placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:bg-white transition-all"
-                        >
-                        <button 
-                            id="clear-photo-search-btn" 
-                            onclick="clearPhotoFeedSearch()" 
-                            class="absolute right-2.5 text-gray-400 hover:text-gray-600 hidden focus:outline-none"
-                        >
-                            <span class="material-icons-outlined text-base">cancel</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="iphone-photos-list" class="p-4 space-y-4 flex-1 overflow-y-auto no-scrollbar max-w-4xl mx-auto w-full">
-                    
-                    <div class="photo-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs flex flex-col" data-title="13 Pro Max White Lighter Shock" data-desc="High-visibility jumper tracking mapping sequence across clock pin logic rails.">
-                        <div class="relative aspect-video bg-slate-900 group overflow-hidden cursor-zoom-in" onclick="zoomDiagnosticPhoto('https://raw.githubusercontent.com/muhammedhaseeb9645/MHTECH-Solutions/refs/heads/main/IPhone%20Display/13%20Pro%20Max%20White%20Lighter%20Shock.png?w=600&auto=format&fit=crop&q=80', '13 Pro Max White Lighter Shock')">
-                            <img src="https://raw.githubusercontent.com/muhammedhaseeb9645/MHTECH-Solutions/refs/heads/main/IPhone%20Display/13%20Pro%20Max%20White%20Lighter%20Shock.png?w=600&auto=format&fit=crop&q=80" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="Schematic Map">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 p-4 flex items-end">
-                                <span class="bg-purple-600 text-white font-black text-[10px] px-2.5 py-1 rounded tracking-wide uppercase">Trace bypass Line</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h5 class="photo-card-title text-sm font-black text-gray-900">13 Pro Max White Lighter Shock</h5>
-                            <p class="photo-card-desc text-xs text-gray-400 font-semibold mt-1">High-visibility jumper tracking mapping sequence across clock pin logic rails.</p>
-                        </div>
-                    </div>
-
-                    <div id="photo-feed-empty-state" class="bg-white rounded-2xl border border-gray-200 p-10 text-center hidden">
-                        <span class="material-icons-outlined text-5xl text-gray-300 mb-2">wallpaper</span>
-                        <p class="text-sm font-black text-gray-700">No Diagrams Found</p>
-                        <p class="text-xs text-gray-400 font-medium mt-1">Try searching another phone model rail.</p>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- ANDROID DISPLAY FEEDS PANEL -->
-            <section id="screen-android-photos" class="view-screen hidden flex-1 flex flex-col bg-gray-50">
-                <div class="bg-white px-6 pt-4 pb-3 border-b border-gray-100 flex items-center gap-4 sticky top-0 z-20 shrink-0 shadow-xs">
-                    <button onclick="navigateTo('premium', 'Profile')" class="text-gray-700 flex items-center justify-center p-1 hover:bg-gray-100 rounded-lg cursor-pointer"><span class="material-icons-outlined">arrow_back</span></button>
-                    <div>
-                        <h4 class="font-black text-sm text-gray-900 uppercase tracking-wide leading-none">Android Display Feeds</h4>
-                        <span class="text-[10px] font-bold text-green-600 uppercase tracking-wider">Hardware Layout & Traces</span>
-                    </div>
-                </div>
-
-                <div class="p-4 bg-white border-b border-gray-200/60 sticky top-12 z-10 shrink-0">
-                    <div class="relative flex items-center max-w-3xl mx-auto w-full">
-                        <span class="material-icons-outlined absolute left-3 text-gray-400 text-sm pointer-events-none">saved_search</span>
-                        <input 
-                            id="android-feed-search" 
-                            type="text" 
-                            placeholder="Search android diagrams (e.g., samsung, poco)..." 
-                            oninput="executeAndroidAdvancedSearch()"
-                            class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-9 py-2 text-sm font-semibold text-gray-800 placeholder-gray-400 focus:outline-none focus:border-green-500 focus:bg-white transition-all"
-                        >
-                        <button 
-                            id="clear-android-search-btn" 
-                            onclick="clearAndroidFeedSearch()" 
-                            class="absolute right-2.5 text-gray-400 hover:text-gray-600 hidden focus:outline-none"
-                        >
-                            <span class="material-icons-outlined text-base">cancel</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="android-solutions-list" class="p-4 space-y-4 flex-1 overflow-y-auto no-scrollbar max-w-4xl mx-auto w-full">
-                    
-                    <div class="android-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs flex flex-col" data-title="Samsung S23 Ultra AMOLED Flickering Line Patch" data-desc="Display connector pin re-routing procedure isolating damaged clock voltage lines.">
-                        <div class="relative aspect-video bg-slate-900 group overflow-hidden cursor-zoom-in" onclick="zoomDiagnosticPhoto('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80', 'Samsung S23 Ultra AMOLED Flickering Line Patch')">
-                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="Schematic Map">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90 p-4 flex items-end">
-                                <span class="bg-green-600 text-white font-black text-[10px] px-2.5 py-1 rounded tracking-wide uppercase">AMOLED Voltage Fix</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h5 class="android-card-title text-sm font-black text-gray-900">Samsung S23 Ultra AMOLED Flickering Line Patch</h5>
-                            <p class="android-card-desc text-xs text-gray-400 font-semibold mt-1">Display connector pin re-routing procedure isolating damaged clock voltage lines.</p>
-                        </div>
-                    </div>
-
-                    <div id="android-feed-empty-state" class="bg-white rounded-2xl border border-gray-200 p-10 text-center hidden">
-                        <span class="material-icons-outlined text-5xl text-gray-300 mb-2">no_sim</span>
-                        <p class="text-sm font-black text-gray-700">No Diagrams Found</p>
-                        <p class="text-xs text-gray-400 font-medium mt-1">Try searching another Android model or chipset query.</p>
-                    </div>
-
                 </div>
             </section>
 
@@ -557,9 +433,6 @@
             if (screenId === 'premium') { lookupClientNetworkIp(); updateCounterDOM(); }
         }
 
-        function launchIphonePhotoFeed() { navigateTo('iphone-photos', 'iPhone Display Solutions'); }
-        function launchAndroidPhotoFeed() { navigateTo('android-photos', 'Android Display Solutions'); }
-
         // Launch Interactive External Iframe Tools
         function launchInteractivePanicPortal() {
             document.querySelectorAll('video').forEach(v => v.pause());
@@ -609,100 +482,6 @@
                 <iframe src="https://muhammedhaseeb9645.github.io/Combo-Support" class="w-full h-[calc(100vh-100px)] border-0 flex-1" allow="allow-scripts allow-same-origin"></iframe>
             `;
             navigateTo('premium-player', 'Combo Support Matrix');
-        }
-
-        // Image/Diagram Query Filtering Logics
-        function executePhotoAdvancedSearch() {
-            const queryInput = document.getElementById('photo-feed-search');
-            const clearBtn = document.getElementById('clear-photo-search-btn');
-            const rawQuery = queryInput.value;
-            const sanitizedQuery = rawQuery.toLowerCase().trim();
-            const cards = document.querySelectorAll('.photo-card');
-            const emptyState = document.getElementById('photo-feed-empty-state');
-            let visibleCardsCount = 0;
-
-            if (rawQuery.length > 0) { clearBtn.classList.remove('hidden'); } else { clearBtn.classList.add('hidden'); }
-
-            cards.forEach(card => {
-                const rawTitle = card.getAttribute('data-title');
-                const rawDesc = card.getAttribute('data-desc');
-                const titleElement = card.querySelector('.photo-card-title');
-                const descElement = card.querySelector('.photo-card-desc');
-
-                if (sanitizedQuery === '') {
-                    card.classList.remove('hidden');
-                    titleElement.innerHTML = rawTitle;
-                    descElement.innerHTML = rawDesc;
-                    visibleCardsCount++;
-                    return;
-                }
-
-                if (rawTitle.toLowerCase().includes(sanitizedQuery) || rawDesc.toLowerCase().includes(sanitizedQuery)) {
-                    card.classList.remove('hidden');
-                    visibleCardsCount++;
-                    const regexExpression = new RegExp(`(${escapeRegExp(rawQuery)})`, 'gi');
-                    titleElement.innerHTML = rawTitle.replace(regexExpression, '<span class="search-match">$1</span>');
-                    descElement.innerHTML = rawDesc.replace(regexExpression, '<span class="search-match">$1</span>');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-
-            if (visibleCardsCount === 0) { emptyState.classList.remove('hidden'); } else { emptyState.classList.add('hidden'); }
-        }
-
-        // Clean Search Field Functions
-        function clearPhotoFeedSearch() {
-            const queryInput = document.getElementById('photo-feed-search');
-            queryInput.value = '';
-            executePhotoAdvancedSearch();
-            queryInput.focus();
-        }
-
-        function executeAndroidAdvancedSearch() {
-            const queryInput = document.getElementById('android-feed-search');
-            const clearBtn = document.getElementById('clear-android-search-btn');
-            const rawQuery = queryInput.value;
-            const sanitizedQuery = rawQuery.toLowerCase().trim();
-            const cards = document.querySelectorAll('.android-card');
-            const emptyState = document.getElementById('android-feed-empty-state');
-            let visibleCardsCount = 0;
-
-            if (rawQuery.length > 0) { clearBtn.classList.remove('hidden'); } else { clearBtn.classList.add('hidden'); }
-
-            cards.forEach(card => {
-                const rawTitle = card.getAttribute('data-title');
-                const rawDesc = card.getAttribute('data-desc');
-                const titleElement = card.querySelector('.android-card-title');
-                const descElement = card.querySelector('.android-card-desc');
-
-                if (sanitizedQuery === '') {
-                    card.classList.remove('hidden');
-                    titleElement.innerHTML = rawTitle;
-                    descElement.innerHTML = rawDesc;
-                    visibleCardsCount++;
-                    return;
-                }
-
-                if (rawTitle.toLowerCase().includes(sanitizedQuery) || rawDesc.toLowerCase().includes(sanitizedQuery)) {
-                    card.classList.remove('hidden');
-                    visibleCardsCount++;
-                    const regexExpression = new RegExp(`(${escapeRegExp(rawQuery)})`, 'gi');
-                    titleElement.innerHTML = rawTitle.replace(regexExpression, '<span class="search-match">$1</span>');
-                    descElement.innerHTML = rawDesc.replace(regexExpression, '<span class="search-match">$1</span>');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-
-            if (visibleCardsCount === 0) { emptyState.classList.remove('hidden'); } else { emptyState.classList.add('hidden'); }
-        }
-
-        function clearAndroidFeedSearch() {
-            const queryInput = document.getElementById('android-feed-search');
-            queryInput.value = '';
-            executeAndroidAdvancedSearch();
-            queryInput.focus();
         }
 
         function zoomDiagnosticPhoto(imgUrl, imgTitle) {
